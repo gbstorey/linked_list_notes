@@ -54,10 +54,69 @@ class SinglyLinkedList:
                 #insert between current and next node
                 if traversalNode == self.tail:
                     self.tail = newNode
-
-
-
+    #traversal algorithm #O(n) time complexity, O(1) space complexity
+    def traverseSLL(self):
+        if self.head:
+            node = self.head
+            while node:
+                print(node.value)
+                node = node.next
+        else:
+            print("The SLL does not exist.")
+    #searching in single linked list #O(n) time complexity, O(1) space complexity
+    def searchSLL(self, value):
+        if self.head:
+            node = self.head
+            index = 0
+            while node:
+                if node.value == value:
+                    print(f"{value} is found at index {index}.")
+                    break
+                node = node.next
+                index += 1
+        else:
+            print("The SLL does not exist, or the value is not inside.")
+    #deleting a node in single linked list #O(n) time complexity, O(1) space complexity
+    def deleteSLL(self, location):
+        if location == 0:
+            if self.head == self.tail:
+                self.head = None
+                self.tail = None
+            else: 
+                self.head=self.head.next
+        elif location == -1:
+            if self.head == self.tail:
+                self.head = None
+                self.tail = None
+            else:
+                node = self.head
+                while node:
+                    if node.next == self.tail:
+                        break
+                    node = node.next
+                node.next = None
+                self.tail = node
+        else: 
+                tempNode = self.head
+                index = 0
+                while index < location-1:
+                    tempNode = tempNode.next
+                    index += 1
+                nextNode = tempNode.next
+                tempNode.next = nextNode.next
+    def deleteEntireSLL(self): #deleteing 
+        if self.head:
+            self.head = None
+            self.tail = None
+        else:
+            print("The SLL does not exist.")
 SLL = SinglyLinkedList()
-for i in range (0, 6):
+for i in range(0,10):
     SLL.insertSLL(i, -1)
-    print([node.value for node in SLL])
+SLL.traverseSLL()
+SLL.searchSLL(4)
+SLL.deleteSLL(-1)
+SLL.deleteEntireSLL()
+SLL.traverseSLL()
+
+
